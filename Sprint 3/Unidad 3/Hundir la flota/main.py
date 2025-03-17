@@ -5,17 +5,24 @@ from variables import simbolo_barco
 
 def jugar():
 
-    registro_disparos_maquina = set()
+    """
+    Desarrollo completo del juego con los módulos ya creados
+    """
 
+    #Set vacío al que iremos añadiendo los disparos de la máquina para que no los repita (pues se generan aleatorios, podría pasar)
+    registro_disparos_maquina = set() 
+
+    #Inicializamos los tableros con los barcos para el usuario y para la máquina
     tablero_jugador = inicializar_tablero()
     tablero_maquina = inicializar_tablero()
-    
     generar_barcos_aleatorios(tablero_jugador)
     generar_barcos_aleatorios(tablero_maquina)
     
-    turno = True  # Comienza el jugador
+    turno = True  #Comienza el usuario
 
     while True:
+
+        #Aquí gestionamos los cambios de turno con el booleano que devuelven turno_jugador y turno_maquina(véanse las funciones en el módulo correspondiente)
         if turno:
             turno = turno_jugador(tablero_jugador, tablero_maquina)
         else:

@@ -1,5 +1,5 @@
 import random
-import textwrap
+import textwrap  #Para que luego el texto informativo no se vea raro en la terminal al ejecutar
 from tablero import disparar_usuario, disparar_maquina, mostrar_tablero_disparos, mostrar_tablero
 from variables import dim_tablero
 
@@ -26,7 +26,7 @@ def menu_principal():
             Esto es una simplificación del clásico hundir la flota.
             Jugarás contra la máquina y el objetivo es hundir todos sus barcos antes de que hunda los tuyos.
             En cada turno podrás darme las coordenadas donde quieras disparar y también comprobar cuáles han sido tus disparos.
-            Si aciertas, sigues disparando, sino, le tocará a la máquina. Puedes salir del juego en cualquier momento.
+            Si aciertas, sigues disparando, si no, le tocará a la máquina. Puedes salir del juego en cualquier momento.
             ¡SUERTE!
             """
             print(textwrap.dedent(texto))
@@ -58,10 +58,11 @@ def turno_jugador(tablero_jugador, tablero_maquina):
             return False  #Cambiamos el turno si fallamos el disparo
 
     elif opcion == "2":
+        print("\nEstos son los disparos que has hecho hasta ahora: \n")
         mostrar_tablero_disparos(tablero_maquina)
 
     elif opcion == "3":
-        print("\nTu tablero actual:")
+        print("\nTu tablero actual: \n")
         mostrar_tablero(tablero_jugador)  #Para ver cómo va la máquina
 
     elif opcion == "4":
@@ -75,7 +76,7 @@ def turno_maquina(tablero_jugador, registro_disparos_maquina):
 
     """
     Función más sencilla que desarrolla el turno de la máquina, que es aleatorio, internamente.
-    No permite que la máquina repita disparo y muestra si nos ha impactado o no.
+    No permite que la máquina repita disparo y muestra solo si nos ha impactado o no.
     """
 
     print("\nTurno de la máquina.")
@@ -90,7 +91,7 @@ def turno_maquina(tablero_jugador, registro_disparos_maquina):
 
         registro_disparos_maquina.add((x, y))  #Guardamos el disparo de la máquina en el set para no repetirlo después
 
-        #La máquina dispara, si falla devuelve False y pasa el turno al jugador
+        #La máquina dispara, si falla devuelve False, entra en el if y devuelve True(que en main corresponde al turno del jugador)
         cambia_turno = disparar_maquina(tablero_jugador,(x,y))
         if not cambia_turno:
             return True
