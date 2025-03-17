@@ -5,7 +5,7 @@ from variables import dim_tablero, barcos, simbolo_agua, simbolo_barco, simbolo_
 
 def inicializar_tablero():
 
-    """Crea los tableros iniciales"""
+    """Crea un tablero vacío"""
 
     return np.full((dim_tablero, dim_tablero), simbolo_agua)
 
@@ -17,7 +17,6 @@ def mostrar_tablero(tablero):
     for fila in tablero:
         print(" ".join(fila))  #Une los elementos con espacios para que se vean alineados
     print()  #Agrega una línea en blanco para mayor claridad
-
 
 
 def mostrar_tablero_disparos(tablero_maquina):
@@ -58,12 +57,12 @@ def colocar_barco(tablero, x, y, eslora, direccion):
             return False #Fuera del tablero o superpuesto
         else:
             tablero[x-eslora+1:x+1, y] = simbolo_barco
-    return True
+    return True  #Para registrar que se ha podido colocar el barco (si no se hubiese podido ya hubiésemos salido de la función en alguno de los return False)
 
 
 def generar_barcos_aleatorios(tablero):
 
-    """Coloca los 10 barcos iniciales aleatoriamente en el tablero"""
+    """Coloca los barcos iniciales aleatoriamente en el tablero"""
 
     for longitud, cantidad in barcos.values():
         for _ in range(cantidad):
@@ -77,27 +76,32 @@ def generar_barcos_aleatorios(tablero):
 
 def disparar_usuario(tablero_maquina, coordenada):
 
-    """Registra un disparo en el tablero y cambia 'O' por 'X' si es un barco, o ' ' por '-' si es agua"""
+    """Registra un disparo en el tablero y cambia 'O' por 'X' si es un barco, o '~' por '-' si es agua"""
 
     if tablero_maquina[coordenada] == simbolo_barco:
         tablero_maquina[coordenada] = simbolo_tocado
         print("¡Tocado!\n")
-        return True
+        return True  #Para registrar que hemos impactado y seguir con el turno
     elif (tablero_maquina[coordenada] == simbolo_tocado) or (tablero_maquina[coordenada] == simbolo_agua_disparada):
         print("Ya has disparado aquí\n")
-        return False
+        return False  #Para registrar que hemos fallado y cambiar el turno
     else:
         tablero_maquina[coordenada] = simbolo_agua_disparada
         print("Agua\n")
-        return False
+        return False  #Para registrar que hemos fallado y cambiar el turno
     
 
 def disparar_maquina(tablero_jugador, coordenada):
+
+    """
+    Funciona igual que disparar_usuario pero cambiando los mensajes que se muestran por pantalla y sin la condición de que se haya repetido disparo (pues ya lo evitamos utilizando el set en turno máquina)
+    """
+
     if tablero_jugador[coordenada] == simbolo_barco:
         tablero_jugador[coordenada] = simbolo_tocado
-        print("¡La máquina te ha dado!\n")
-        return True
+        print("¡La máquina te ha dado!\n")  #Para avisarnos de que la máquina nos ha dado
+        return True  #La máquina vuelve a disparar si impacta, igual que el usuario
     else:
         tablero_jugador[coordenada] = simbolo_agua_disparada
-        print("La máquina ha fallado\n")
-        return False
+        print("La máquina ha fallado\n")  #Avisa de que la máquina ha fallado
+        return False  #Para saltar a nuestro turnp
