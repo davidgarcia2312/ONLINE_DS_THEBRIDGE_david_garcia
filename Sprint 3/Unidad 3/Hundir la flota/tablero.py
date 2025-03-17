@@ -1,6 +1,6 @@
 import numpy as np
 import random
-from constantes import dim_tablero, barcos, simbolo_agua, simbolo_barco, simbolo_tocado, simbolo_agua_disparada
+from variables import dim_tablero, barcos, simbolo_agua, simbolo_barco, simbolo_tocado, simbolo_agua_disparada
 
 
 def inicializar_tablero():

@@ -1,6 +1,6 @@
 from funciones import menu_principal, turno_jugador, turno_maquina
 from tablero import inicializar_tablero, generar_barcos_aleatorios
-from constantes import simbolo_barco
+from variables import simbolo_barco
 
 
 def jugar():
