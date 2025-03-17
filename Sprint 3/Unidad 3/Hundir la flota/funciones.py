@@ -79,7 +79,7 @@ def turno_maquina(tablero_jugador, registro_disparos_maquina):
     No permite que la máquina repita disparo y muestra solo si nos ha impactado o no.
     """
 
-    print("\nTurno de la máquina.")
+    print("\nTurno de la máquina")
 
     while True:
         #Generamos una coordenada aleatoria que no haya sido disparada antes
@@ -91,7 +91,7 @@ def turno_maquina(tablero_jugador, registro_disparos_maquina):
 
         registro_disparos_maquina.add((x, y))  #Guardamos el disparo de la máquina en el set para no repetirlo después
 
-        #La máquina dispara, si falla devuelve False, entra en el if y devuelve True(que en main corresponde al turno del jugador)
+        #La máquina dispara, si falla devuelve False, entra en el if y devuelve True(que en main corresponde al turno del usuario)
         cambia_turno = disparar_maquina(tablero_jugador,(x,y))
         if not cambia_turno:
             return True
