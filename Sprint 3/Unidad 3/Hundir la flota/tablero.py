@@ -99,9 +99,7 @@ def disparar_maquina(tablero_jugador, coordenada):
 
     if tablero_jugador[coordenada] == simbolo_barco:
         tablero_jugador[coordenada] = simbolo_tocado
-        print("¡La máquina te ha dado!\n")  #Para avisarnos de que la máquina nos ha dado
         return True  #La máquina vuelve a disparar si impacta, igual que el usuario
     else:
         tablero_jugador[coordenada] = simbolo_agua_disparada
-        print("La máquina ha fallado\n")  #Avisa de que la máquina ha fallado
-        return False  #Para saltar a nuestro turnp
+        return False  #Para indicar que falla y saltar de turno (o bien de turno interno o bien al del usuario)

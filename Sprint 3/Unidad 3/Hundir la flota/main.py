@@ -3,7 +3,7 @@ from tablero import inicializar_tablero, generar_barcos_aleatorios
 from variables import simbolo_barco
 
 
-def jugar():
+def jugar(dificultad_maquina):
 
     """
     Desarrollo completo del juego con los módulos ya creados
@@ -26,7 +26,7 @@ def jugar():
         if turno:
             turno = turno_jugador(tablero_jugador, tablero_maquina)
         else:
-            turno = turno_maquina(tablero_jugador, registro_disparos_maquina)
+            turno = turno_maquina(tablero_jugador, registro_disparos_maquina, dificultad_maquina)
 
         #Verificamos si alguien ganó
         if not (simbolo_barco in tablero_jugador):
@@ -37,6 +37,9 @@ def jugar():
             break
 
 
+#Este bloque asegura que el juego solo se ejecute si este script se ejecuta directamente
+#y no si se importa como un módulo en otro archivo (se incluye para hacer todo más robusto)
 if __name__ == "__main__":
-    if menu_principal():
-        jugar()
+    dificultad = menu_principal()  #Recogemos la dificultad elegida
+    if dificultad: #Si se ha recogido un valor dificultad si o si es 1,2 o 3, que siempre devuelve True
+        jugar(dificultad)  #Se pasa la dificultad a jugar()
