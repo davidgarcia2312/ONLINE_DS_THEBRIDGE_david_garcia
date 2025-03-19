@@ -1,3 +1,4 @@
+import numpy as np
 from funciones import menu_principal, turno_jugador, turno_maquina
 from tablero import inicializar_tablero, generar_barcos_aleatorios
 from variables import simbolo_barco
@@ -29,11 +30,11 @@ def jugar(dificultad_maquina):
             turno = turno_maquina(tablero_jugador, registro_disparos_maquina, dificultad_maquina)
 
         #Verificamos si alguien ganó
-        if not (simbolo_barco in tablero_jugador):
-            print("¡La máquina ha ganado!")
+        if not np.any(tablero_jugador == simbolo_barco):  #Si no quedan barcos en el tablero del jugador la máquina ha ganado
+            print("\n¡La máquina ha hundido todos tus barcos! GAME OVER\n")
             break
-        if not (simbolo_barco in tablero_maquina):
-            print("¡Has ganado!")
+        if not np.any(tablero_maquina == simbolo_barco):  #Si no quedan barcos en el tablero de la máquina el jugador ha ganado
+            print("\n¡Has hundido todos los barcos de la máquina! ¡Felicidades!\n")
             break
 
 
