@@ -4,6 +4,7 @@ import numpy as np
 from colorama import Fore,Style
 from variables import dim_tablero, simbolo_barco
 
+
 def menu_principal():
 
     """
@@ -91,7 +92,7 @@ def turno_jugador(tablero_jugador, tablero_maquina):
                 print("Entrada no válida. Introduce solo números entre 0 y 9.")
 
         if tablero_jugador.disparar_usuario(tablero_maquina, x, y):
-            #O mantenemos turno por aceptar o hemos ganado (por dar al ultimo barco)
+            #O mantenemos turno por acertar o hemos ganado (por dar al ultimo barco)
             if not np.any(tablero_maquina.matriz == simbolo_barco):
                 print(Fore.GREEN + "\n¡Has hundido todos los barcos de la máquina! ¡Felicidades!\n" + Style.RESET_ALL)
                 exit()
