@@ -1,14 +1,12 @@
-#Fichero con las variables fijas del juego
-
 #Dimensiones del tablero
 dim_tablero = 10
 
-#Barcos con su eslora y la cantidad de cada tipo
+#Barcos con su eslora y la cantidad
 barcos = {
-    "Portaaviones": (4,1),
-    "Acorazado": (3,2),
-    "Submarino": (2,3),
-    "Destructor": (1,4)
+    "Submarino": (1, 4), 
+    "Destructor": (2, 3),
+    "Acorazado": (3, 2),
+    "Portaviones": (4, 1)
 }
 
 #Símbolos del tablero con sus significados
